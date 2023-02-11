@@ -9,41 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var collectionView1: UICollectionView = {
-        let viewLayout = UICollectionViewFlowLayout()
-        viewLayout.scrollDirection = .horizontal
-        viewLayout.minimumLineSpacing = 12
-        viewLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
-        collectionView.backgroundColor = .white
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
-    }()
-
-    private var collectionView2: UICollectionView = {
-        let viewLayout = UICollectionViewFlowLayout()
-        viewLayout.scrollDirection = .horizontal
-        viewLayout.minimumLineSpacing = 12
-        viewLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
-        collectionView.backgroundColor = .white
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
-    }()
-
-    let dataText = ["IOS", "Android", "Design", "QA", "Flutter", "PM", "IOS", "Android", "Design", "QA", "Flutter", "PM"]
-
-    let dataText2 = ["IOS", "QA", "Android",  "Flutter", "Design", "PM"]
-
-    var cellArray1 = [CellModel]()
-    var cellArray2 = [CellModel]()
-
+    // ScrollView
 
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.bounces = false
+        view.showsVerticalScrollIndicator = false
         return view
     }()
 
@@ -55,54 +27,33 @@ class ViewController: UIViewController {
         return view
     }()
 
-    private let imageViewMain: UIView = {
+    // ImageView
+
+    private let mainImageView: UIView = {
         let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 521).isActive = true
-        view.backgroundColor = UIColor.cyan
+        let screenSize = UIScreen.main.bounds
+        let heigh = screenSize.height
+        view.heightAnchor.constraint(equalToConstant: heigh / 1.6).isActive = true
+        view.backgroundColor = .clear
         return view
     }()
 
-    private let subview2: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 420).isActive = true
-        view.backgroundColor = UIColor.white
-        return view
-    }()
-
-    private let subview3: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        return view
-    }()
-
-    private let subViewLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Хочешь к нам?"
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textColor = #colorLiteral(red: 0.6537410617, green: 0.6508514285, blue: 0.6713270545, alpha: 1)
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        return label
-    }()
-
-    private let subViewButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = #colorLiteral(red: 0.2511924207, green: 0.2511924207, blue: 0.2511924207, alpha: 1)
-        button.setTitle("Отправить заявку", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 30
-        return button
-    }()
-
-    private let radiousView: UIView = {
+    private let roundedView: UIView = {
         let view = UIView()
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
         view.layer.cornerRadius = 20
         view.backgroundColor = .white
+        return view
+    }()
+
+    // Content
+
+    private let mainContentView: UIView = {
+        let view = UIView()
+        let screenSize = UIScreen.main.bounds
+        let heigh = screenSize.height
+        view.heightAnchor.constraint(equalToConstant: heigh * 0.87).isActive = true
+        view.backgroundColor = UIColor.white
         return view
     }()
 
@@ -131,6 +82,18 @@ class ViewController: UIViewController {
         return label
     }()
 
+    private var collectionView1: UICollectionView = {
+        let viewLayout = UICollectionViewFlowLayout()
+        viewLayout.scrollDirection = .horizontal
+        viewLayout.minimumLineSpacing = 12
+        viewLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        collectionView.backgroundColor = .white
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
+
     private let label3: UILabel = {
         let label = UILabel()
         label.text = "Получай стипендию, выстраивай удобный график, работай на современном железе."
@@ -145,6 +108,58 @@ class ViewController: UIViewController {
         return label
     }()
 
+    private var collectionView2: UICollectionView = {
+        let viewLayout = UICollectionViewFlowLayout()
+        viewLayout.scrollDirection = .horizontal
+        viewLayout.minimumLineSpacing = 12
+        viewLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
+        collectionView.backgroundColor = .white
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
+
+    // Question and Button View
+
+    private let questionAndButtonView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+
+    private let subViewLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Хочешь к нам?"
+        label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        label.textColor = #colorLiteral(red: 0.6537410617, green: 0.6508514285, blue: 0.6713270545, alpha: 1)
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        return label
+    }()
+
+    private let applicationButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = #colorLiteral(red: 0.2511924207, green: 0.2511924207, blue: 0.2511924207, alpha: 1)
+        button.setTitle("Отправить заявку", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 30
+        return button
+    }()
+
+    let dataText = ["IOS", "Android", "Design", "QA", "Flutter", "PM", "IOS", "Android", "Design", "QA"]
+
+    let dataText2 = ["IOS", "QA", "Android",  "Flutter", "Design", "PM"]
+
+    var cellArray1 = [CellModel]()
+    var cellArray2 = [CellModel]()
+
+    //MARK: - Life circle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -156,14 +171,56 @@ class ViewController: UIViewController {
         collectionView2.dataSource = self
         collectionView2.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
 
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
-        setupScrollView()
+        applicationButton.addTarget(self, action: #selector(applicationButtonTapped), for: .touchUpInside)
+
+        setBackgroundImage()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupScrollView()
     }
+
+    //MARK: - Action
+
+    @objc func applicationButtonTapped() {
+        showAlert(message: "Ваша заявка успешно отправлена!", title: "Поздравляем!")
+    }
+
+    //MARK: - Setup Data
+
+    private func setFirstCollection() {
+        for i in dataText {
+            let item = CellModel()
+            item.title = i
+            item.tapped = false
+            cellArray1.append(item)
+        }
+    }
+
+    private func setSecondCollection() {
+        for i in dataText2 {
+            let item = CellModel()
+            item.title = i
+            item.tapped = false
+            cellArray2.append(item)
+        }
+    }
+
+    //MARK: - Setup UI
+
+    func setBackgroundImage(){
+        let background = UIImage(named: "image")
+
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+       }
 
     private func setupScrollView() {
         let margins = view.layoutMarginsGuide
@@ -180,7 +237,7 @@ class ViewController: UIViewController {
         scrollStackViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
 
         configureContainerView()
-        setupImageView()
+        //setupImageView()
         setupContentView()
         setupRoundView()
 
@@ -188,128 +245,105 @@ class ViewController: UIViewController {
         setSecondCollection()
     }
 
-    private func setFirstCollection() {
-
-        for i in dataText {
-            let item = CellModel()
-            item.title = i
-            item.tapped = false
-            cellArray1.append(item)
-        }
-    }
-
-    private func setSecondCollection() {
-
-        for i in dataText2 {
-            let item = CellModel()
-            item.title = i
-            item.tapped = false
-            cellArray2.append(item)
-        }
-    }
-
     private func configureContainerView() {
-        scrollStackViewContainer.addArrangedSubview(imageViewMain)
-        scrollStackViewContainer.addArrangedSubview(subview2)
+        scrollStackViewContainer.addArrangedSubview(mainImageView)
+        scrollStackViewContainer.addArrangedSubview(mainContentView)
     }
+
+    //MARK: - Constraints
 
     private func setupImageView() {
         let image = UIImage(named: "image")
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageViewMain.addSubview(imageView)
+        mainImageView.addSubview(imageView)
 
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: imageViewMain.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: imageViewMain.trailingAnchor),
-            imageView.topAnchor.constraint(equalTo: imageViewMain.topAnchor, constant: -50),
-            imageView.bottomAnchor.constraint(equalTo: imageViewMain.bottomAnchor)
+            imageView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: mainImageView.topAnchor, constant: -50),
+            imageView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor)
         ])
     }
 
     private func setupRoundView() {
-        radiousView.translatesAutoresizingMaskIntoConstraints = false
-        imageViewMain.addSubview(radiousView)
+        roundedView.translatesAutoresizingMaskIntoConstraints = false
+        mainImageView.addSubview(roundedView)
 
         NSLayoutConstraint.activate([
-            radiousView.leadingAnchor.constraint(equalTo: imageViewMain.leadingAnchor),
-            radiousView.trailingAnchor.constraint(equalTo: imageViewMain.trailingAnchor),
-            radiousView.bottomAnchor.constraint(equalTo: imageViewMain.bottomAnchor, constant: 20)
+            roundedView.leadingAnchor.constraint(equalTo: mainImageView.leadingAnchor),
+            roundedView.trailingAnchor.constraint(equalTo: mainImageView.trailingAnchor),
+            roundedView.bottomAnchor.constraint(equalTo: mainImageView.bottomAnchor, constant: 20)
         ])
     }
 
     private func setupContentView() {
-        subview2.addSubview(label)
-
+        mainContentView.addSubview(label)
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: subview2.leadingAnchor, constant: 20),
-            label.topAnchor.constraint(equalTo: subview2.topAnchor, constant: 0)
+            label.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 20),
+            label.topAnchor.constraint(equalTo: mainContentView.topAnchor, constant: 0)
         ])
 
-        subview2.addSubview(label2)
-
+        mainContentView.addSubview(label2)
         NSLayoutConstraint.activate([
-            label2.leadingAnchor.constraint(equalTo: subview2.leadingAnchor, constant: 20),
-            label2.trailingAnchor.constraint(equalTo: subview2.trailingAnchor, constant: -10),
+            label2.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 20),
+            label2.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -10),
             label2.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5)
         ])
 
-        subview2.addSubview(collectionView1)
-
+        mainContentView.addSubview(collectionView1)
         NSLayoutConstraint.activate([
-            collectionView1.topAnchor.constraint(equalTo: label2.bottomAnchor, constant: 5),
-            collectionView1.leadingAnchor.constraint(equalTo: subview2.leadingAnchor),
-            collectionView1.trailingAnchor.constraint(equalTo: subview2.trailingAnchor),
+            collectionView1.topAnchor.constraint(equalTo: label2.bottomAnchor, constant: 3),
+            collectionView1.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            collectionView1.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
             collectionView1.heightAnchor.constraint(equalToConstant: 50)
         ])
 
-        subview2.addSubview(label3)
-
+        mainContentView.addSubview(label3)
         NSLayoutConstraint.activate([
-            label3.leadingAnchor.constraint(equalTo: subview2.leadingAnchor, constant: 20),
-            label3.trailingAnchor.constraint(equalTo: subview2.trailingAnchor, constant: -10),
-            label3.topAnchor.constraint(equalTo: collectionView1.bottomAnchor, constant: 15)
+            label3.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 20),
+            label3.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -10),
+            label3.topAnchor.constraint(equalTo: collectionView1.bottomAnchor, constant: 18)
         ])
 
-        subview2.addSubview(collectionView2)
-
+        mainContentView.addSubview(collectionView2)
         NSLayoutConstraint.activate([
             collectionView2.topAnchor.constraint(equalTo: label3.bottomAnchor, constant: 25),
-            collectionView2.leadingAnchor.constraint(equalTo: subview2.leadingAnchor),
-            collectionView2.trailingAnchor.constraint(equalTo: subview2.trailingAnchor, constant: -30),
+            collectionView2.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            collectionView2.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -30),
             collectionView2.heightAnchor.constraint(equalToConstant: 100)
         ])
 
-        view.addSubview(subview3)
-        view.bringSubviewToFront(subview3)
-        subview3.frame = CGRect(x: 0, y: view.bounds.height - 120, width: view.bounds.width, height: 120)
-//        NSLayoutConstraint.activate([
-//            subview3.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            subview3.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            subview3.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
-        subview3.addSubview(subViewLabel)
+        view.addSubview(questionAndButtonView)
+        view.bringSubviewToFront(questionAndButtonView)
+        let screenSize = UIScreen.main.bounds
+        let heigh = screenSize.height
+        let viewHeight = heigh / 8
+        questionAndButtonView.frame = CGRect(x: 0, y: view.bounds.height - viewHeight, width: view.bounds.width, height: viewHeight)
+
+        questionAndButtonView.addSubview(subViewLabel)
         NSLayoutConstraint.activate([
-            subViewLabel.leadingAnchor.constraint(equalTo: subview3.leadingAnchor, constant: 20),
-            subViewLabel.topAnchor.constraint(equalTo: subview3.topAnchor, constant: 20),
+            subViewLabel.leadingAnchor.constraint(equalTo: questionAndButtonView.leadingAnchor, constant: 20),
+            subViewLabel.topAnchor.constraint(equalTo: questionAndButtonView.topAnchor, constant: 15),
             subViewLabel.widthAnchor.constraint(equalToConstant: 120)
         ])
 
-        subview3.addSubview(subViewButton)
+        questionAndButtonView.addSubview(applicationButton)
         NSLayoutConstraint.activate([
-            subViewButton.leadingAnchor.constraint(equalTo: subViewLabel.trailingAnchor, constant: 24),
-            subViewButton.trailingAnchor.constraint(equalTo: subview3.trailingAnchor, constant: -20),
-            subViewButton.heightAnchor.constraint(equalToConstant: 60),
-            subViewButton.widthAnchor.constraint(equalToConstant: 200),
-            subViewButton.topAnchor.constraint(equalTo: subview3.topAnchor, constant: 20)
+            applicationButton.leadingAnchor.constraint(equalTo: subViewLabel.trailingAnchor, constant: 24),
+            applicationButton.trailingAnchor.constraint(equalTo: questionAndButtonView.trailingAnchor, constant: -20),
+            applicationButton.heightAnchor.constraint(equalToConstant: 60),
+            applicationButton.widthAnchor.constraint(equalToConstant: 200),
+            applicationButton.topAnchor.constraint(lessThanOrEqualTo: questionAndButtonView.topAnchor, constant: 15)
         ])
     }
 }
 
+    //MARK: - CollectionView
+
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         if collectionView == collectionView1 {
             let model1 = cellArray1[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
@@ -340,12 +374,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionView1 {
             let label = UILabel(frame: CGRect.zero)
-            label.text = dataText[indexPath.item]
+            label.text = cellArray1[indexPath.row].title
             label.sizeToFit()
             return CGSize(width: label.frame.width + 40, height: 44)
         } else {
             let label = UILabel(frame: CGRect.zero)
-            label.text = dataText2[indexPath.item]
+            label.text = cellArray2[indexPath.row].title
             label.sizeToFit()
             return CGSize(width: label.frame.width + 40, height: 44)
         }
